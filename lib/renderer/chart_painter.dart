@@ -185,9 +185,9 @@ class ChartPainter extends BaseChartPainter {
     canvas.translate(mTranslateX * scaleX, 0.0);
     canvas.scale(scaleX, 1.0);
     for (int i = mStartIndex; datas != null && i <= mStopIndex; i++) {
-      KLineEntity? curPoint = datas?[i];
+      AfLineEntity? curPoint = datas?[i];
       if (curPoint == null) continue;
-      KLineEntity lastPoint = i == 0 ? curPoint : datas![i - 1];
+      AfLineEntity lastPoint = i == 0 ? curPoint : datas![i - 1];
       double curX = getX(i);
       double lastX = i == 0 ? curX : getX(i - 1);
 
@@ -256,7 +256,7 @@ class ChartPainter extends BaseChartPainter {
   @override
   void drawCrossLineText(Canvas canvas, Size size) {
     var index = calculateSelectedX(selectX);
-    KLineEntity point = getItem(index);
+    AfLineEntity point = getItem(index);
 
     TextPainter tp = getTextPainter(point.close, chartColors.crossTextColor);
     double textHeight = tp.height;
@@ -324,7 +324,7 @@ class ChartPainter extends BaseChartPainter {
   }
 
   @override
-  void drawText(Canvas canvas, KLineEntity data, double x) {
+  void drawText(Canvas canvas, AfLineEntity data, double x) {
     //长按显示按中的数据
     if (isLongPress || (isTapShowInfoDialog && isOnTap)) {
       var index = calculateSelectedX(selectX);
@@ -488,7 +488,7 @@ class ChartPainter extends BaseChartPainter {
   ///画交叉线
   void drawCrossLine(Canvas canvas, Size size) {
     var index = calculateSelectedX(selectX);
-    KLineEntity point = getItem(index);
+    AfLineEntity point = getItem(index);
     Paint paintY = Paint()
       ..color = this.chartColors.vCrossColor
       ..strokeWidth = this.chartStyle.vCrossWidth

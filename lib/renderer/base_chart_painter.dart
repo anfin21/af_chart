@@ -13,7 +13,7 @@ export 'package:flutter/material.dart'
 
 abstract class BaseChartPainter extends CustomPainter {
   static double maxScrollX = 0.0;
-  List<KLineEntity>? datas;
+  List<AfLineEntity>? datas;
   MainState mainState;
 
   SecondaryState secondaryState;
@@ -146,7 +146,7 @@ abstract class BaseChartPainter extends CustomPainter {
   void drawDate(Canvas canvas, Size size);
 
   //画值
-  void drawText(Canvas canvas, KLineEntity data, double x);
+  void drawText(Canvas canvas, AfLineEntity data, double x);
 
   //画最大最小值
   void drawMaxAndMin(Canvas canvas);
@@ -201,7 +201,7 @@ abstract class BaseChartPainter extends CustomPainter {
     }
   }
 
-  void getMainMaxMinValue(KLineEntity item, int i) {
+  void getMainMaxMinValue(AfLineEntity item, int i) {
     double maxPrice, minPrice;
     if (mainState == MainState.MA) {
       maxPrice = max(item.high, _findMaxMA(item.maValueList ?? [0]));
@@ -247,14 +247,14 @@ abstract class BaseChartPainter extends CustomPainter {
     return result;
   }
 
-  void getVolMaxMinValue(KLineEntity item) {
+  void getVolMaxMinValue(AfLineEntity item) {
     mVolMaxValue = max(mVolMaxValue,
         max(item.vol, max(item.MA5Volume ?? 0, item.MA10Volume ?? 0)));
     mVolMinValue = min(mVolMinValue,
         min(item.vol, min(item.MA5Volume ?? 0, item.MA10Volume ?? 0)));
   }
 
-  void getSecondaryMaxMinValue(KLineEntity item) {
+  void getSecondaryMaxMinValue(AfLineEntity item) {
     if (secondaryState == SecondaryState.MACD) {
       if (item.macd != null) {
         mSecondaryMaxValue =
@@ -321,7 +321,7 @@ abstract class BaseChartPainter extends CustomPainter {
   ///@param position 索引值
   double getX(int position) => position * mPointWidth + mPointWidth / 2;
 
-  KLineEntity getItem(int position) {
+  AfLineEntity getItem(int position) {
     return datas![position];
     // if (datas != null) {
     //   return datas[position];

@@ -24,8 +24,8 @@ class TimeFormat {
   ];
 }
 
-class KChartWidget extends StatefulWidget {
-  final List<KLineEntity>? datas;
+class AfChartWidget extends StatefulWidget {
+  final List<AfLineEntity>? datas;
   final MainState mainState;
   final bool volHidden;
   final SecondaryState secondaryState;
@@ -53,7 +53,7 @@ class KChartWidget extends StatefulWidget {
   final bool isTrendLine;
   final double xFrontPadding;
 
-  KChartWidget(
+  AfChartWidget(
     this.datas,
     this.chartStyle,
     this.chartColors, {
@@ -82,10 +82,10 @@ class KChartWidget extends StatefulWidget {
   });
 
   @override
-  _KChartWidgetState createState() => _KChartWidgetState();
+  _AfChartWidgetState createState() => _AfChartWidgetState();
 }
 
-class _KChartWidgetState extends State<KChartWidget>
+class _AfChartWidgetState extends State<AfChartWidget>
     with TickerProviderStateMixin {
   double mScaleX = 1.0, mScrollX = 0.0, mSelectX = 0.0;
   StreamController<InfoWindowEntity?>? mInfoWindowStream;
@@ -350,7 +350,7 @@ class _KChartWidgetState extends State<KChartWidget>
               widget.isLine == true ||
               !snapshot.hasData ||
               snapshot.data?.kLineEntity == null) return Container();
-          KLineEntity entity = snapshot.data!.kLineEntity;
+          AfLineEntity entity = snapshot.data!.kLineEntity;
           double upDown = entity.change ?? entity.close - entity.open;
           double upDownPercent = entity.ratio ?? (upDown / entity.open) * 100;
           final double? entityAmount = entity.amount;

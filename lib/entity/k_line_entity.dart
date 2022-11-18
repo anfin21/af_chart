@@ -1,6 +1,6 @@
 import '../entity/k_entity.dart';
 
-class KLineEntity extends KEntity {
+class AfLineEntity extends KEntity {
   late double open;
   late double high;
   late double low;
@@ -11,7 +11,7 @@ class KLineEntity extends KEntity {
   double? ratio;
   int? time;
 
-  KLineEntity.fromCustom({
+  AfLineEntity.fromCustom({
     this.amount,
     required this.open,
     required this.close,
@@ -23,7 +23,7 @@ class KLineEntity extends KEntity {
     required this.vol,
   });
 
-  KLineEntity.fromJson(Map<String, dynamic> json) {
+  AfLineEntity.fromJson(Map<String, dynamic> json) {
     open = json['open']?.toDouble() ?? 0;
     high = json['high']?.toDouble() ?? 0;
     low = json['low']?.toDouble() ?? 0;
